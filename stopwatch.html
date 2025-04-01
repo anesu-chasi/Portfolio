@@ -1,0 +1,277 @@
+<!DOCTYPE HTML>
+<!--
+    Massively by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+    <head>
+        <title>Stopwatch Project</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    </head>
+    <body class="is-preload">
+
+        <!-- Wrapper -->
+            <div id="wrapper">
+
+                <!-- Header -->
+                    <header id="header">
+                        <a href="index.html" class="logo">Projects</a>
+                    </header>
+
+                <!-- Nav -->
+                    <nav id="nav">
+                        <ul class="links">
+                            <li><a href="index.html">Projects</a></li>
+                            <li class="active"><a href="generic.html">Stopwatch</a></li>
+                            
+                        </ul>
+                    
+                    </nav>
+
+                <!-- Main -->
+                    <div id="main">
+                        <!-- Post -->
+                        <section class="post">
+                            <header class="major">                                
+                                <h1>Microprocessor-Based Stopwatch</h1>
+                                <p>A precision timing solution leveraging Timer0, interrupts, and assembly-level programming</p>
+                            </header>
+                            <div class="image main"><img src="images/stop.png" alt="Stopwatch Project Image" /></div>
+                            <p>This project implements a microprocessor-based stopwatch, showcasing advanced embedded systems design. By utilizing Timer0 overflows and interrupt-driven routines, the stopwatch achieves precise timing and seamless user interaction. The design incorporates:</p>
+                            <ul>
+                                <li><strong>Binary-to-BCD Conversion:</strong> Efficiently translates binary timing values into human-readable formats for display.</li>
+                                <li><strong>Debounced Button Controls:</strong> Ensures reliable user input for pausing, resuming, and resetting the timer.</li>
+                                <li><strong>Interrupt-Driven Architecture:</strong> Minimizes CPU overhead by handling timing events asynchronously.</li>
+                            </ul>
+                            <p>The stopwatch's modular assembly code demonstrates best practices in low-level programming, including register management, flag-based state tracking, and hardware abstraction. Its robust design makes it suitable for educational purposes, embedded applications, and real-time systems requiring precise timing.</p>
+                        </section>
+
+                        <!-- Source Code Section -->
+                        <section class="post">
+                            <header class="major">
+                                <h2>Source Code</h2>
+                            </header>
+                            <div class="content">
+                                <pre>
+RUNNING  EQU 40H ; Flag to track if the timer is running 
+KEY      EQU P3.5
+SEG_ON   EQU P1.6
+BUZZER   EQU P1.5
+DISPLAY  EQU 30H
+KEY_LAST EQU DISPLAY+3
+
+; Timer0 settings
+T0_G     EQU 0 ; GATE
+T0_C     EQU 0 ; COUNTER/-TIMER
+T0_M     EQU 1 ; MODE (0..3)
+TIM0     EQU T0_M+T0_C*4+T0_G*8 ; TIMER 0
+
+T1_G     EQU 0 ; GATE
+T1_C     EQU 0 ; COUNTER/-TIMER
+T1_M     EQU 0 ; MODE (0..3)
+TIM1     EQU T1_M+T1_C*4+T1_G*8
+
+TMOD_SET EQU TIM0+TIM1*16
+
+; 50[ms] = 50 000[us]*(11.0592[MHz]/12) = 
+; = 46 080 machine cycles = 180 * 256
+TH0_SET EQU 256-180
+TL0_SET EQU 0
+
+    LJMP START
+
+; ============================= Timer0 interrupt handler ========================
+    ORG 0BH
+    MOV TH0, #TH0_SET
+    DJNZ R5, NOT_YET_1S
+    MOV R5, #5 ; Reload for another second
+    
+    INC R7 ; Increment seconds
+    MOV A, R7
+    CJNE A, #60, NOT_YET_1S
+    MOV R7, #0
+    INC R0 ; Increment minutes
+
+    MOV A, R0
+    CJNE A, 21H, NOT_YET_1S
+    LCALL BUZZ
+
+    MOV A, R0
+    CJNE A, #2, NOT_YET_1S
+    LCALL BUZZ
+
+NOT_YET_1S:
+    LCALL LCD_CLR
+    
+    MOV A, R0
+    LCALL TO_BCD
+    LCALL WRITE_HEX
+    
+    MOV A, #':'
+    LCALL WRITE_DATA
+    
+    MOV A, R7
+    LCALL TO_BCD
+    LCALL WRITE_HEX
+    RETI
+
+BUZZ:
+    CLR BUZZER
+    MOV A,#10
+    LCALL DELAY_100MS
+    SETB BUZZER
+    RET
+
+; ============================= Main Program ================================
+    ORG 100H
+START:
+    LCALL LCD_CLR
+    MOV R7, #0
+    MOV R0, #0
+    MOV TMOD, #TMOD_SET
+    MOV TH0, #TH0_SET
+    MOV TL0, #TL0_SET
+    SETB TR0
+    SETB RUNNING
+    MOV R5, #20
+    SETB EA
+    SETB ET0
+
+LOOP_BUTTON:
+    MOV R2, #3
+    MOV R3, #01H
+
+LOOP:
+    SETB SEG_ON
+    MOV R1, #CSDS
+    MOV A, R3
+    MOVX @R1, A
+
+    MOV C, KEY
+    MOV A, #1
+    LCALL DELAY_MS
+    JC KEY_ON
+    JB KEY,KEY_END
+
+    MOV A, R3
+    CPL A
+    ANL KEY_LAST,A 
+    SJMP KEY_END 
+    
+KEY_ON:
+    JNB KEY, KEY_END
+    MOV A,R3
+    ANL A,KEY_LAST
+    JNZ KEY_END
+    
+    MOV A, R3 
+    ORL KEY_LAST, A
+    
+    LCALL CHECK_WHICH_BUTTON
+KEY_END:
+    MOV A, R3
+    RL A
+    MOV R3, A
+    DJNZ R2, LOOP
+    SJMP LOOP_BUTTON
+
+CHECK_WHICH_BUTTON:
+    MOV A, R3
+    XRL A, #11111111B
+    MOV R4, A
+    
+    ANL A, #1
+    JZ BUTTON_A
+    
+    MOV A, R4
+    ANL A, #2
+    JZ BUTTON_B
+    
+    MOV A, R4
+    ANL A, #04H
+    JZ BUTTON_C
+
+BUTTON_A:
+    CPL TR0
+    SJMP LOOP
+
+BUTTON_B:
+    CLR TR0
+    CLR RUNNING
+    MOV R7, #0
+    MOV R0, #0
+    LJMP START
+
+BUTTON_C:
+    CLR TR0
+    CLR RUNNING
+    LCALL LCD_CLR
+    
+    MOV A, #'S'
+    LCALL WRITE_DATA
+    MOV A, #'e'
+    LCALL WRITE_DATA
+    MOV A, #'t'
+    LCALL WRITE_DATA
+    MOV A, #' '
+    LCALL WRITE_DATA
+    MOV A, #'N'
+    LCALL WRITE_DATA
+    MOV A, #'='
+    LCALL WRITE_DATA
+    
+    LCALL WAIT_KEY
+    MOV 21H, ACC
+    LCALL WRITE_HEX
+    
+    MOV A, #2
+    LCALL DELAY_100MS
+    LJMP START
+
+TO_BCD:
+    MOV R4, A
+    MOV B, #10
+    DIV AB
+    JZ NO_CHANGE
+    SWAP A
+    ADD A, B
+    RET
+
+NO_CHANGE:
+    MOV A, R4
+    RET
+                                </pre>
+                            </div>
+                        </section>
+                    </div>
+
+                <!-- Footer -->
+                    <footer id="footer">
+                        <section>
+                           
+                        
+                        </section>
+                    </footer>
+
+                <!-- Copyright -->
+                    <div id="copyright">
+                        <ul><li>&copy; ANESU</li></ul>
+                    </div>
+
+            </div>
+
+        <!-- Scripts -->
+            <script src="assets/js/jquery.min.js"></script>
+            <script src="assets/js/jquery.scrollex.min.js"></script>
+            <script src="assets/js/jquery.scrolly.min.js"></script>
+            <script src="assets/js/browser.min.js"></script>
+            <script src="assets/js/breakpoints.min.js"></script>
+            <script src="assets/js/util.js"></script>
+            <script src="assets/js/main.js"></script>
+
+    </body>
+</html>

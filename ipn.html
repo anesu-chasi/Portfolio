@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Inverse Polish Notation (IPN) Calculator</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    </head>
+    <body class="is-preload">
+
+        <!-- Wrapper -->
+        <div id="wrapper">
+
+            <!-- Header -->
+            <header id="header">
+                <a href="index.html" class="logo">Projects</a>
+            </header>
+
+            <!-- Nav -->
+            <nav id="nav">
+                <ul class="links">
+                    <li><a href="index.html">Portfolio</a></li>
+                    <li class="active"><a href="ipn.html">IPN Calculator</a></li>
+                </ul>
+            </nav>
+
+            <!-- Main -->
+            <div id="main">
+
+                <!-- Post -->
+                <section class="post">
+                    <header class="major">
+                        <h1>Inverse Polish Notation (IPN) Calculator</h1>
+                        <p>A Verilog-based calculator for evaluating arithmetic expressions in reverse Polish notation using a finite state machine.</p>
+                    </header>
+                    <div class="image main"><img src="images/RPN.png" alt="IPN Project Image" /></div>
+                    <p>The IPN Calculator is a cutting-edge digital design project that demonstrates the power of hardware description languages (HDLs) in solving computational problems. By leveraging Verilog, this project implements a robust finite state machine (FSM) to evaluate arithmetic expressions in reverse Polish notation (RPN). The design employs a stack-oriented approach for sequential processing of operands and operators, ensuring efficient state-based input capture and error detection.</p>
+
+                    <h2>Technical Overview</h2>
+                    <p>This project showcases advanced digital design techniques, including:</p>
+                    <ul>
+                        <li><strong>Finite State Machine (FSM):</strong> A state-driven architecture for managing input capture, stack operations, and output generation.</li>
+                        <li><strong>Stack-Oriented Processing:</strong> Utilizes a hardware-based stack to store intermediate results and operators for sequential evaluation.</li>
+                        <li><strong>Arithmetic Evaluation:</strong> Supports basic arithmetic operations such as addition, subtraction, and multiplication, with provisions for operator precedence.</li>
+                        <li><strong>Error Handling:</strong> Implements mechanisms to detect invalid inputs and ensure robust operation.</li>
+                    </ul>
+
+                    <h2>Key Features</h2>
+                    <ul>
+                        <li><strong>Hardware-Based Stack:</strong> A custom-designed stack module for efficient operand and operator management.</li>
+                        <li><strong>Operator Precedence:</strong> Ensures correct evaluation order for complex expressions.</li>
+                        <li><strong>Modular Design:</strong> Separates the FSM, stack, and arithmetic logic into distinct modules for scalability and maintainability.</li>
+                        <li><strong>Real-Time Processing:</strong> Processes inputs and generates outputs in real-time, demonstrating the speed of hardware-based computation.</li>
+                    </ul>
+
+                    <h2>Implementation Details</h2>
+                    <p>The IPN Calculator is implemented using Verilog and adheres to a modular design pattern:</p>
+                    <ul>
+                        <li><strong>FSM Module:</strong> Manages the overall control flow, including input capture, stack operations, and output generation.</li>
+                        <li><strong>Stack Module:</strong> A hardware-based stack for storing operands and operators, with support for push and pop operations.</li>
+                        <li><strong>Arithmetic Logic:</strong> Performs basic arithmetic operations and handles operator precedence.</li>
+                    </ul>
+                    <p>The design is synthesized and tested on an FPGA, ensuring real-world applicability and performance.</p>
+
+                    <h2>Source Code</h2>
+                    <p>The following Verilog code snippet demonstrates the core functionality of the IPN Calculator:</p>
+                    <div class="content">
+                        <pre>
+module infix_to_postfix_conversion
+(
+  input wire CLK,
+  input wire RST,
+  input wire I_STB,
+  input wire I_NUM_OR_OP,  // 1:NUM, 0:OPERATOR
+  input wire [31:0] I_DATA,
+  output reg I_ACK,
+  output reg O_STB,
+  output reg O_NUM_OR_OP,  // 1:NUM, 0:OPERATOR
+  output reg [31:0] O_DATA,
+  input wire O_ACK
+);
+
+// FSM and stack logic here...
+
+endmodule
+                        </pre>
+                    </div>
+
+                    <h2>Use Case Scenarios</h2>
+                    <p>The IPN Calculator is ideal for applications requiring efficient arithmetic evaluation, such as:</p>
+                    <ul>
+                        <li><strong>Embedded Systems:</strong> Real-time computation in resource-constrained environments.</li>
+                        <li><strong>Digital Signal Processing:</strong> Hardware-accelerated mathematical operations.</li>
+                        <li><strong>Educational Tools:</strong> Demonstrates the principles of FSMs, stack operations, and arithmetic logic in digital design.</li>
+                    </ul>
+                </section>
+
+            </div>
+
+            <!-- Footer -->
+            <footer id="footer">
+                <section class="split contact">
+                    <section>
+                        <h3>Project Technologies</h3>
+                        <p>Language: Verilog<br/>
+                        Tools: FPGA Synthesis, Simulation<br/>
+                        Concepts: FSM, Stack Operations, Arithmetic Logic</p>
+                    </section>
+                    <section>
+                        <h3>Key Skills Demonstrated</h3>
+                        <p>Finite State Machine Design<br/>
+                        Hardware-Based Stack Implementation<br/>
+                        Modular Digital Design<br/>
+                        FPGA Testing and Debugging</p>
+                    </section>
+                </section>
+            </footer>
+
+            <!-- Copyright -->
+            <div id="copyright">
+                <ul><li>&copy; Anesu Chasi</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+            </div>
+
+        </div>
+
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.scrollex.min.js"></script>
+        <script src="assets/js/jquery.scrolly.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+
+    </body>
+</html>

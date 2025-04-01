@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Exchange Rate Viewer - Anesu Chasi Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Projects</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Portfolio</a></li>
+							<li class="active"><a href="java.html">Exchange Rate Viewer</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<h1>Exchange Rate Viewer (NBP API)</h1>
+									<p>A robust Java application for real-time currency exchange rate retrieval and visualization</p>
+								</header>
+								<div class="image main"><img src="images/Control-V.png" alt="Exchange Rate Viewer" /></div>
+								<p>The Exchange Rate Viewer is a feature-rich Java application that leverages the Narodowy Bank Polski (NBP) API to fetch and display real-time currency exchange rates. This project demonstrates advanced integration of RESTful APIs, JSON parsing, and GUI development, showcasing a seamless blend of backend and frontend technologies.</p>
+								
+								<h2>Technical Overview</h2>
+								<p>The application is built using Java's core libraries for networking and JSON handling. It sends HTTP GET requests to the NBP API, retrieves JSON responses, and parses them to extract relevant data fields such as currency codes, exchange rates, and dates. The parsed data is dynamically rendered in a user-friendly graphical interface, designed using JavaFX.</p>
+								
+								<h2>Key Features</h2>
+								<ul>
+									<li><strong>Real-Time Data Retrieval:</strong> Fetches up-to-date exchange rates directly from the NBP API.</li>
+									<li><strong>Dynamic Date Range Selection:</strong> Allows users to specify custom date ranges for historical data analysis.</li>
+									<li><strong>Interactive User Interface:</strong> Built with JavaFX, featuring a responsive ListView for displaying exchange rates.</li>
+									<li><strong>Data Export Functionality:</strong> Enables users to save exchange rate data in CSV format for offline analysis.</li>
+									<li><strong>Error Handling:</strong> Implements robust exception handling for network errors and invalid API responses.</li>
+								</ul>
+
+								<h2>Implementation Details</h2>
+								<p>The application architecture follows a modular design pattern, separating concerns into distinct layers:</p>
+								<ul>
+									<li><strong>API Layer:</strong> Handles HTTP requests and responses using Java's <code>HttpURLConnection</code> class.</li>
+									<li><strong>Data Parsing Layer:</strong> Utilizes the <code>org.json</code> library to parse JSON responses and map them to Java objects.</li>
+									<li><strong>UI Layer:</strong> Built with JavaFX, featuring a clean and intuitive interface for displaying data.</li>
+								</ul>
+								<p>Additionally, the application employs multithreading to ensure a responsive user experience by offloading network operations to background threads.</p>
+
+								<h2>Use Case Scenarios</h2>
+								<p>This application is ideal for financial analysts, currency traders, or anyone needing quick access to exchange rate data. Its ability to fetch historical data and export it for further analysis makes it a versatile tool for both personal and professional use.</p>
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section>
+								<h3>Project Technologies</h3>
+								<p>Language: Java<br/>
+								API: Narodowy Bank Polski (NBP)<br/>
+								Libraries: Networking, JSON Parsing, JavaFX</p>
+							</section>
+							<section>
+								<h3>Key Skills Demonstrated</h3>    
+								<p>RESTful API Integration<br/>
+								JSON Data Handling<br/>
+								JavaFX GUI Development<br/>
+								Multithreading for Asynchronous Operations</p>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Anesu Chasi</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

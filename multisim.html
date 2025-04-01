@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Multisim Projects - Anesu Chasi Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Projects</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Portfolio</a></li>
+							<li class="active"><a href="multisim.html">Multisim Projects</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<h1>Multisim Projects</h1>
+									<p>Exploring Digital Circuit Design and Simulation</p>
+								</header>
+								<div class="image main"><img src="images/JK.png" alt="Johnson's Counter" /></div>
+								
+								<h2>Johnson's Counter with Auto-Correction</h2>
+								
+								<p>The Johnson's Counter is a sequential circuit that leverages the toggling behavior of JK flip-flops to generate a predictable sequence of states. This design incorporates <strong>auto-correction logic</strong> to reset the sequence if an invalid state is detected, ensuring robust operation.</p>
+								
+								<p><strong>Key Features:</strong></p>
+								<ul>
+									<li><strong>Sequential Logic:</strong> Four JK flip-flops are connected in series, with each stage toggling based on the state of the preceding stage.</li>
+									<li><strong>Auto-Correction:</strong> Gating logic ensures that any invalid state immediately resets the sequence, maintaining system integrity.</li>
+									<li><strong>Strict Activation Order:</strong> The circuit enforces a strict order of activation, requiring the previous flip-flop's output to be high before the next stage toggles.</li>
+									<li><strong>Precision and Security:</strong> Only the correct sequence of inputs propagates through all stages, producing a final active output.</li>
+								</ul>
+								<p>This project demonstrates the practical application of JK flip-flops in designing secure and precise sequence generators.</p>
+								
+								<div class="image fit" style="display: flex; justify-content: center;">
+									<img src="images/div2.jpg" alt="Divisibility Checker" style="width: 70%;" />
+								</div>
+								
+								<h2>Moore-Type Checker for Divisibility by 2 or 3</h2>
+								<p>This project showcases a <strong>Moore-type finite state machine (FSM)</strong> designed to check the divisibility of binary numbers by 2 or 3. The circuit employs sequential logic to transition between states based on the input bits, demonstrating the principles of state machine design.</p>
+								
+								<p><strong>Key Features:</strong></p>
+								<ul>
+									<li><strong>State Machine Design:</strong> A Moore FSM with well-defined states for tracking divisibility conditions.</li>
+									<li><strong>Sequential Logic:</strong> Uses flip-flops and combinational logic to transition between states based on input bits.</li>
+									<li><strong>Real-Time Evaluation:</strong> Processes binary inputs in real-time to determine divisibility.</li>
+									<li><strong>Educational Value:</strong> Demonstrates the practical application of FSMs in digital circuit design.</li>
+								</ul>
+								<p>This project highlights the versatility of state machines in solving complex digital logic problems.</p>
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section>
+								<h3>Project Tools</h3>
+								<p>Simulation Software: Multisim<br/>
+								Design Focus: Digital Circuits<br/>
+								Components: JK Flip-Flops, Logic Gates</p>
+							</section>
+							<section>
+								<h3>Key Concepts</h3>
+								<p>Sequence Generation<br/>
+								State Machine Design<br/>
+								Digital Logic Principles<br/>
+								Auto-Correction Mechanisms</p>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Anesu Chasi</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

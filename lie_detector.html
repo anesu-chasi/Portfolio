@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Arduino Nano Lie Detector</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    </head>
+    <body class="is-preload">
+
+        <!-- Wrapper -->
+        <div id="wrapper">
+
+            <!-- Header -->
+            <header id="header">
+                <a href="index.html" class="logo">Back to Portfolio</a>
+            </header>
+
+            <!-- Main -->
+            <div id="main">
+                <!-- Article -->
+                <article class="post">
+                    <header class="major">
+                        <h1>Arduino Nano Lie Detector</h1>
+                        <p>A fun and interactive project to detect lies using an Arduino Nano, LEDs, and a bit of creativity!</p>
+                    </header>
+
+                    <!-- Intro Story -->
+                    <section>
+                        <h2>How It All Started</h2>
+                        <p>It all began when my friend, who shall remain nameless (but you know who you are), developed a habit of telling tall tales. From claiming they could run a marathon in under an hour to insisting they invented the internet, it was time to put their "truthfulness" to the test. Enter the Arduino Nano Lie Detector—a device born out of equal parts curiosity, humor, and a desire to call out some of those outrageous fibs. While it’s not exactly FBI-grade technology, it’s a fun way to see who’s sweating under the pressure of their own stories!</p>
+                    </section>
+
+                    <!-- Components -->
+                    <section>
+                        <h2>Step 1:Components</h2>
+                        <ul>
+                            <li>Arduino Nano </li>
+                            <li>Green LED </li>
+                            <li>Red LED </li>
+                            <li>Orange LED </li>
+                            <li>Resistor (10k)</li>
+                            <li>Cables</li>
+                        </ul>
+                        <h3>Materials Needed</h3>
+                        <ul>
+                            <li>Cardboard</li>
+                            <li>Tinfoil</li>
+                            <li>Velcro</li>
+                            <li>Hot Glue</li>
+                        </ul>
+                        <h3>Tools Needed</h3>
+                        <ul>
+                            <li>Hot Glue Gun</li>
+                            <li>Soldering Iron</li>
+                            <li>Craft Knife</li>
+                        </ul>
+                    </section>
+
+                    <!-- Step 2: Wiring -->
+                    <section>
+                        <h2>Step 2: Wiring</h2>
+                        <div style="display: flex; justify-content: center; gap: 20px;">
+                            <a href="#" class="image"><img src="images/wiringd.jpg" alt="Wiring Diagram 2" /></a>
+                        </div>
+                        <a href="#" class="image main"><img src="images/wiring.jpg" alt="Wiring Diagram" /></a>
+                        <p>The wiring for this project was straightforward. The Following steps were used:</p>
+                        <ul>
+                            <li>Connected a long piece of cable to the Arduino's analog pin 0.</li>
+                            <li>Attached the 10k resistor to ground and the extended analog 0 pin.</li>
+                            <li>Connected another long piece of cable to the Arduino's 5V pin.</li>
+                            <li>Connected the anode of the green LED to pin 2 and the cathode  to ground.</li>
+                            <li>Connected the anode of the orange LED to pin 3 and the cathode to ground.</li>
+                            <li>Connected the anode of the red LED to pin 4 and the cathode to ground.</li>
+                        </ul>
+                    </section>
+
+                    <!-- Step 3: Coding -->
+                    <section>
+                        <h2>Step 3: Coding</h2>
+                        <p>The code for this project is simple and controls the LEDs based on the skin conductivity readings. Here’s the code:</p>
+                        <pre><code>
+void setup() {
+  Serial.begin(9600);
+  pinMode(2, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(4, OUTPUT);
+  digitalWrite(2, HIGH);
+  delay(500);
+  digitalWrite(3, HIGH);
+  delay(500);
+  digitalWrite(4, HIGH);
+  delay(500);
+}
+
+void loop() {
+   if (analogRead(A0) > 60)
+{
+  digitalWrite(4, HIGH);
+}
+else
+{
+  digitalWrite(4, LOW);
+}
+  if (analogRead(A0) > 20)
+{
+  digitalWrite(2, HIGH);
+}
+else
+{
+  digitalWrite(2, LOW);
+}
+  if (analogRead(A0) > 45)
+{
+  digitalWrite(3, HIGH);
+}
+else
+{
+  digitalWrite(3 , LOW);
+}
+
+  Serial.println(analogRead(A0));
+  delay(20);
+}
+                        </code></pre>
+                    </section>
+
+                    <!-- Step 4: Making a Case -->
+                    <section>
+                        <h2>Step 4: Making a Case</h2>
+                        <a href="#" class="image main"><img src="images/case.jpg" alt="Making a Case" /></a>
+                        <p>To house the components, the following pieces of cardboard needed to be cut:</p>
+                        <ul>
+                            <li>Two 15x3 cm rectangles</li>
+                            <li>One 15x5 cm rectangle</li>
+                            <li>Three 5x3 cm rectangles (cut a square in the middle of one for the Nano's USB port)</li>
+                            <li>One 9x5 cm rectangle</li>
+                            <li>One 6x5 cm rectangle</li>
+                        </ul>
+                        <p>Assembled the case using hot glue and Velcro for easy access to the components.</p>
+                    </section>
+
+                    <!-- Step 5: Finished -->
+                    <section>
+                        <h2>Step 5: Finished</h2>
+                        <a href="#" class="image main"><img src="images/finished.jpg" alt="Finished Project" /></a>
+                        <p>And there you have it! The Arduino Nano Lie Detector was complete. While it’s not a foolproof method for detecting lies, it’s a fun way to see who might be sweating under the pressure of their own stories. My friend? Let’s just say they’re a little more careful with their claims now!</p>
+                    </section>
+                </article>
+            </div>
+
+            <!-- Footer -->
+            <footer id="footer">
+                <section class="split contact">
+                    <section class="alt">
+                        <h3>Location</h3>
+                        <p>Poznań, Poland</p>
+                    </section>
+                    <section>
+                        <h3>Email</h3>
+                        <p><a href="mailto:chasi.anesu@gmail.com">chasi.anesu@gmail.com</a></p>
+                    </section>
+                </section>
+            </footer>
+
+        </div>
+
+        <!-- Copyright -->
+        <div id="copyright">
+            <ul><li>&copy; Anesu Chasi</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+        </div>
+
+    </body>
+</html>
