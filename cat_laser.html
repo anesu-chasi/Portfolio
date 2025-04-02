@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Cat Laser Pointer - Anesu Chasi Portfolio</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    </head>
+    <body class="is-preload">
+
+        <!-- Wrapper -->
+        <div id="wrapper">
+
+            <!-- Header -->
+            <header id="header">
+                <a href="index.html" class="logo">Back to Portfolio</a>
+            </header>
+
+            <!-- Main -->
+            <div id="main">
+
+                <!-- Post -->
+                <section class="post">
+                    <header class="major">
+                        <h1>Cat Laser Pointer</h1>
+                        <p>A fun and interactive project to keep your cat entertained using an Arduino and servo motors.</p>
+                    </header>
+                    <div class="image main"><img src="images/cat_laser.jpg" alt="Cat Laser Pointer" /></div>
+                    <p>The project came to be when my cat, Ruda, decided that 3 a.m. was the perfect time to practice parkour on the furniture. Desperate for a solution (and some sleep), I realized I needed a way to keep them entertained during the day. Enter the Cat Laser Pointer—a project born out of equal parts necessity and curiosity. Now, Ruda spends their time chasing a laser instead of knocking over my coffee mug. Mission accomplished!</p>
+                    <h2>How It Works</h2>
+                    <p>The project uses two servo motors to control the movement of the laser pointer. The servos are programmed to move the laser in random directions, creating unpredictable patterns that cats love to chase. The Arduino generates the random movements and controls the servos accordingly.</p>
+
+                    <h2>Components</h2>
+                    <ul>
+                        <li>Arduino Uno</li>
+                        <li>2 Servo Motors</li>
+                        <li>Laser Pointer</li>
+                        <li>Breadboard</li>
+                        <li>Jumper Wires</li>
+                        <li>Power Supply</li>
+                    </ul>
+                    <h2>3D Design</h2>
+<p>The mechanical parts for this project were designed in SketchUp to ensure precise fitting and functionality. The design includes a servo base, a servo mount, and a laser holder, all of which were 3D-printed for durability and accuracy. These custom parts make it easy to assemble the laser pointer and ensure smooth movement of the servos.</p>
+<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
+    <a href="#" class="image" style="flex: 1 1 calc(50% - 20px); max-width: 60%;"></a>
+        <img src="images/servo_base.jpg" alt="3D Printed Servo Base" style="width: 100%; height: auto;" />
+    </a>
+    <a href="#" class="image" style="flex: 1 1 calc(50% - 20px); max-width: 60%;"></a>
+        <img src="images/laser_holder.jpg" alt="3D Printed Laser Holder" style="width: 100%; height: auto;" />
+    </a>
+</div>
+
+                    <h2>Steps to Build</h2>
+                    <ol>
+                        <li>Connect the two servo motors to the Arduino using the breadboard and jumper wires.</li>
+                        <li>Attach the laser pointer to the servo motors so it moves with the servos.</li>
+                        <li>Upload the Arduino code to generate random movements for the servos.</li>
+                        <li>Power the Arduino and watch the laser pointer move in random patterns.</li>
+                    </ol>
+
+                    <h2>Code</h2>
+                    <p>Here’s the Arduino code for the Cat Laser Pointer:</p>
+                    <pre><code>
+#include <Servo.h>
+
+Servo servoX;
+Servo servoY;
+
+void setup() {
+    servoX.attach(9);
+    servoY.attach(10);
+    randomSeed(analogRead(0));
+}
+
+void loop() {
+    int posX = random(0, 180);
+    int posY = random(0, 180);
+
+    servoX.write(posX);
+    servoY.write(posY);
+
+    delay(500);
+}
+                    </code></pre>
+
+                    <h2>Conclusion</h2>
+                    <p>The Cat Laser Pointer project showcases the creative potential of combining technology and everyday challenges. It’s an engaging way to explore Arduino programming and servo motor control while providing endless entertainment for Ruda.</p>
+                </section>
+
+            </div>
+
+            <!-- Footer -->
+            <footer id="footer">
+                <section class="split contact">
+                    <section>
+                        <h3>Project Tools</h3>
+                        <p>Arduino IDE<br />
+                        Components: Servo Motors, Laser Pointer</p>
+                    </section>
+                    <section>
+                        <h3>Key Skills Demonstrated</h3>
+                        <p>Arduino Programming<br />
+                        Servo Motor Control<br />
+                        Random Movement Generation</p>
+                    </section>
+                </section>
+            </footer>
+
+            <!-- Copyright -->
+            <div id="copyright">
+                <ul>
+                    <li>&copy; Anesu Chasi</li>
+                    <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.scrollex.min.js"></script>
+        <script src="assets/js/jquery.scrolly.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+
+    </body>
+</html>
